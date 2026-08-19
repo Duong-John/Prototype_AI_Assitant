@@ -1,6 +1,6 @@
 # Prototype AI Vision Assistant
 
-![Version](https://img.shields.io/badge/Version-Prototype_1.0.2-blue.svg)
+![Version](https://img.shields.io/badge/Version-Prototype_1.0.0-blue.svg)
 ![Status](https://img.shields.io/badge/Status-Experimental-orange.svg)
 ![Platform](https://img.shields.io/badge/Platform-Linux-lightgrey.svg)
 
