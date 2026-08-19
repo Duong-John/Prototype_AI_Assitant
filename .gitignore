@@ -1,0 +1,7 @@
+venv/
+*.wav
+*.pt
+__pycache__/
+prototype1_memory/
+Prototype_1_main/
+test*

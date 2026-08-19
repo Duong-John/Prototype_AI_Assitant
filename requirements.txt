@@ -1,0 +1,20 @@
+ultralytics==8.3.0
+face_recognition==1.3.0
+setuptools<70.0.0
+# opencv-python==4.10.0.84 <- replaced by "opencv-python-headless"
+numpy
+faster-whisper 
+sounddevice 
+scipy 
+torchaudio
+nvidia-cublas-cu12 
+nvidia-cudnn-cu12
+omegaconf 
+soundfile
+keyboard
+evdev
+PyQt5
+opencv-python-headless
+ddgs
+chromadb
+# "sudo chmod a+rw /dev/input/event*" <- MUST grant permission once before running the bot
