@@ -1,6 +1,6 @@
 # Prototype AI Vision Assistant
 
-![Version](https://img.shields.io/badge/Version-Prototype_1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/Version-Prototype_1.0.1-blue.svg)
 ![Status](https://img.shields.io/badge/Status-Experimental-orange.svg)
 ![Platform](https://img.shields.io/badge/Platform-Linux-lightgrey.svg)
 
@@ -110,9 +110,13 @@ sudo chmod a+rw /dev/input/event*
 
 ## Usage Guidelines
 
-*   **Push-to-Talk:** Press and hold the ```[SPACEBAR]``` to communicate with the Assistant.
+*   **Push-to-Talk:** ~~Press and hold the ```[SPACEBAR]``` to communicate with the Assistant.~~ Say ```"Hey Prototype 1"``` to wake up the system.
 *   **Deep Vision:** Say the keyword ```"vision"``` in your prompt (For example: "Use vision to tell me what I am holding") to explicitly route the frame to MiniCPM-V.
 *   **Web Search:** Say the keyword ```"internet"``` (For example: "Search the internet for the current CEO of NVIDIA") to route the query to DuckDuckGo and bypass outdated LLM knowledge.
 *   **Motion Interaction:** Wave or move rapidly side-to-side in front of the camera while the agent is ```"IDLE```" to trigger a proactive greeting.
 
 *Disclaimer: Prototype 1 is an experimental build. Future iterations aim to replace the hardware key monitor with a continuous Wake-Word engine.*
+
+## History of Development
+* **```v1.0.0```:** Developed and tested basic feature for the Prototype 1
+* **```v1.0.1```:** Added Wak-up mechanism by saying ```"Hey Prototype 1"```. Fixed problems of Audio by creating chunk of audios. Upgraded the system to optimize the performace by applying I/O Waiting và Non-blocking Memory.

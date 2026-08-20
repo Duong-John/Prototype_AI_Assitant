@@ -5,6 +5,8 @@ import os
 import time
 import datetime 
 import chromadb
+import threading
+import queue
 from chromadb.utils import embedding_functions
 from chromadb.api.types import Documents, EmbeddingFunction, Embeddings
 
@@ -58,26 +60,39 @@ class AIBuddyBrain:
         )
         print(f"[BRAIN] RAG Engine Online. Total memories loaded: {self.collection.count()}")
 
-    # ==========================================
-    # RAG
-    # ==========================================
-    def _store_interaction_in_rag(self, user_text, assistant_text):
-        """Lưu cặp hội thoại vào cơ sở dữ liệu Vector"""
-        try:
-            document_chunk = f"User: {user_text}\nPrototype_1: {assistant_text}"
-            doc_id = f"mem_{int(time.time() * 1000)}"
-            
-            self.collection.add(
-                documents=[document_chunk],
-                metadatas=[{"timestamp": datetime.datetime.now().isoformat()}],
-                ids=[doc_id]
-            )
-            print(f"[RAG MEMORY] Saved interaction to Vector DB. (Total: {self.collection.count()})")
-        except Exception as e:
-            print(f"[RAG MEMORY ERROR] Failed to store interaction: {e}")
+        # ==========================================
+        # 2. [New] MEMORY WORKER
+        # ==========================================
+        self.memory_queue = queue.Queue()
+        self.memory_thread = threading.Thread(target=self._memory_worker_loop, daemon=True)
+        self.memory_thread.start()
 
+    def _memory_worker_loop(self):
+        """Luồng ngầm liên tục chờ dữ liệu để ghi vào RAG mà không block Main Thread"""
+        while True:
+            # Blocked until new signal in Queue
+            user_text, assistant_text = self.memory_queue.get()
+            
+            try:
+                document_chunk = f"User: {user_text}\nPrototype_1: {assistant_text}"
+                doc_id = f"mem_{int(time.time() * 1000)}"
+                
+                self.collection.add(
+                    documents=[document_chunk],
+                    metadatas=[{"timestamp": datetime.datetime.now().isoformat()}],
+                    ids=[doc_id]
+                )
+                print(f"[RAG MEMORY] Background saved interaction. (Total: {self.collection.count()})")
+            except Exception as e:
+                print(f"[RAG MEMORY ERROR] Failed to store interaction: {e}")
+            finally:
+                # Đánh dấu hoàn tất task
+                self.memory_queue.task_done()
+
+    # ==========================================
+    # RAG RETRIEVAL
+    # ==========================================
     def _retrieve_relevant_facts(self, user_text):
-        """Truy vấn Top 2 đoạn hội thoại liên quan nhất bằng Semantic Vector Search"""
         if self.collection.count() == 0:
             return "No previous memories stored yet."
             
@@ -97,7 +112,7 @@ class AIBuddyBrain:
             return "Memory retrieval error."
 
     # ==========================================
-    # DETERMINISTIC ROUTING
+    # DETERMINISTIC ROUTING & CORE LOGIC
     # ==========================================
     def update_environment_state(self, key, value):
         if key in self.environment_state:
@@ -116,7 +131,7 @@ class AIBuddyBrain:
 {recalled_memory}
 
 CRITICAL RULES:
-1. ZERO FOLLOW-UP QUESTIONS: NEVER ask questions at the end of your response (e.g., "How can I help?"). Provide the exact answer and STOP.
+1. ZERO FOLLOW-UP QUESTIONS: NEVER ask questions at the end of your response. Provide the exact answer and STOP.
 2. SPOKEN TEXT ONLY: Your output is read by a TTS voice. NEVER use Markdown, asterisks (**), bullet points, numbered lists, or URLs. Write in natural, flowing paragraphs ONLY.
 3. MEMORY USAGE: Use the [RECALLED LONG-TERM MEMORY] to answer questions about the user's past, identity, major, or preferences.
 4. EMOTION: You must include exactly one tag: [normal], [happy], or [sad].
@@ -145,9 +160,6 @@ CRITICAL RULES:
         user_text_lower = user_text.lower()
         tool_result_context = ""
 
-        # ========================================================
-        # DETERMINISTIC KEYWORD ROUTING
-        # ========================================================
         if "vision" in user_text_lower and vision_tool_callback:
             print("\n[BRAIN: EXPLICIT TRIGGER] Deep Vision activated by keyword.")
             tool_result = vision_tool_callback(user_text)
@@ -187,7 +199,8 @@ CRITICAL RULES:
             self.short_term_memory.append({"role": "assistant", "content": final_text})
             print(f"\n[Prototype_1]: {final_text}")
             
-            self._store_interaction_in_rag(user_text, final_text)
+            # [New] Fire-and-forget: Insert into Queue and run if able
+            self.memory_queue.put((user_text, final_text))
             
             return final_text
             

@@ -17,4 +17,6 @@ PyQt5
 opencv-python-headless
 ddgs
 chromadb
+num2words
+openwakeword
 # "sudo chmod a+rw /dev/input/event*" <- MUST grant permission once before running the bot
