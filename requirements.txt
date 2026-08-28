@@ -20,3 +20,13 @@ chromadb
 num2words
 openwakeword
 # "sudo chmod a+rw /dev/input/event*" <- MUST grant permission once before running the bot
+
+
+# Note that sometime Errors related to ""/.../cv2/qt/plugins"" may occur, because maybe the ultralytics (YOLO) has 
+# automatically install opencv-python (which MUST NOT BE installed due to incompatibility and replaced by opencv-python-headless" 
+# as mentioned above)
+
+# To address this issue, run the following command:
+# pip uninstall opencv-python opencv-python-headless opencv-contrib-python -y
+# pip install opencv-python-headless
+
