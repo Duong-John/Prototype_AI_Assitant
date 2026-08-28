@@ -4,13 +4,11 @@
 ![Status](https://img.shields.io/badge/Status-Developing-orange.svg)
 ![Platform](https://img.shields.io/badge/Platform-Cloud-lightgrey.svg)
 
-> **Note:** This project is currently in the **Prototype 1** stage. 
-
-
 ![Prototype Eye UI](docs/assets/eye_ui_demo.png)
-*(Placeholder: Insert screenshot of the Prototype Eye UI here)*
 
 Prototype Web is a multimodal, real-time AI assistant capable of seeing, listening, speaking, and remembering. Built with a focus on edge computing and microservices, it leverages high-speed language models, real-time object tracking on the browser, and long-term semantic memory.
+
+> **Note:** This project is currently in the **Prototype 1** stage. 
 > **Note:** You can check out the branch ` local-version `, it is the local version and this web version is developed base on it.
 ## Live Access
 
