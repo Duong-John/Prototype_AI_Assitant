@@ -35,6 +35,10 @@ ai_vision = NvidiaVision()
 ai_rag = PineconeRAG()
 print("[SYSTEM] All AI Modules Online.")
 
+@app.get("/")
+async def root_endpoint():
+    return {"message": "Prototype_Web API is running. Connect via WebSocket at /ws/chat"}
+
 @app.get("/health")
 async def health_check():
     return {"status": "ok", "message": "Prototype Backend is awake."}
