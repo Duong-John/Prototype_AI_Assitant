@@ -1,0 +1,52 @@
+/* ==========================================
+   PROTOTYPE WEB - STYLESHEET
+========================================== */
+
+/* Reset all default browser margins */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    overflow: hidden; /* Prevent scrolling */
+    font-family: 'Courier New', Courier, monospace; /* Sci-fi terminal feel */
+}
+
+/* Make sure the canvas drawn by face.js sits at the back */
+canvas {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Instructional overlay text */
+#ui-overlay {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    color: rgba(66, 165, 245, 0.4); /* Faded Prototype Blue */
+    z-index: 10;
+    pointer-events: none; /* Let mouse clicks pass through to canvas if needed */
+    user-select: none;
+}
+
+#ui-overlay p {
+    margin: 5px 0;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Utility class to hide elements gracefully */
+.hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
