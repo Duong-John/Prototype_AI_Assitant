@@ -29,4 +29,5 @@ openwakeword
 # To address this issue, run the following command:
 # pip uninstall opencv-python opencv-python-headless opencv-contrib-python -y
 # pip install opencv-python-headless
+# Then it should work
 

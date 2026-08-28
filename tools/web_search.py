@@ -2,7 +2,7 @@ import requests
 import urllib.parse
 from ddgs import DDGS
 
-JINA_API_KEY = "jina_a93f0cd71cea4a23ab6de059b48791f1cmcKFTa2QmHDogBs4_PKkY9Hmyhv"
+JINA_API_KEY = ""
 
 def perform_web_search_jina(query):
     print(f"\n[WEB SEARCH] Querying Jina AI for: '{query}'...")
