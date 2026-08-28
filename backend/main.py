@@ -74,7 +74,8 @@ async def websocket_chat_endpoint(websocket: WebSocket):
                     print(f"\n[WEBSOCKET] Processing request from {user_email}")
                     
                     # 1. SAVE AUDIO FROM BASE64 TO TEMP FILE
-                    input_audio_path = os.path.join(temp_dir, "input_mic.wav")
+                    # input_audio_path = os.path.join(temp_dir, "input_mic.wav")
+                    input_audio_path = os.path.join(temp_dir, "input_mic.webm")
                     with open(input_audio_path, "wb") as f:
                         f.write(base64.b64decode(audio_b64))
                         
