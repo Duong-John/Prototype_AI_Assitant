@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype AI - Vision & Intelligence</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for a modern tech look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Canvas (The Blurred Eye) -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- UI Overlay (Everything on top of the canvas) -->
+    <div class="content-wrapper">
+        
+        <!-- Top Navigation Bar -->
+        <nav class="navbar">
+            <div class="logo">PROTOTYPE<span>.AI</span></div>
+            <!-- Trỏ link này về Subdomain Zero Trust của bạn -->
+            <a href="https://app.prototype.convolution-nguyen-anh-duong.id.vn" class="btn-primary">Get Started</a>
+        </nav>
+
+        <!-- Hero Section -->
+        <header class="hero">
+            <h1>Meet Prototype AI</h1>
+            <p>The next-generation multimodal assistant with real-time vision, semantic memory, and emotional intelligence. Designed to see, listen, and remember.</p>
+            <a href="https://app.prototype.convolution-nguyen-anh-duong.id.vn" class="btn-large">Experience the Prototype</a>
+        </header>
+
+        <!-- Features Section (Glassmorphism Cards) -->
+        <section class="features">
+            <div class="card">
+                <h3>Deep Vision Integration</h3>
+                <p>[Scrap Data] Powered by YOLOv10 and NVIDIA NIM Llama 3.2 Vision. Prototype sees the world, understands context, and tracks objects with zero-latency edge computing directly on your browser.</p>
+            </div>
+            <div class="card">
+                <h3>Semantic Long-term Memory</h3>
+                <p>[Scrap Data] Zero-trust partitioned memory via Pinecone Vector Database. It remembers you, your preferences, and past conversations seamlessly across sessions.</p>
+            </div>
+            <div class="card">
+                <h3>Real-time Audio Pipeline</h3>
+                <p>[Scrap Data] Lightning-fast Speech-to-Text and Synthesis using Groq. Speak naturally, and Prototype responds with synthesized voice and dynamic emotional cues.</p>
+            </div>
+            <div class="card">
+                <h3>Edge-Optimized UI</h3>
+                <p>[Scrap Data] HTML5 Canvas rendering at 60 FPS for expressive animations, completely decoupled from the main thread for ultimate performance on any device.</p>
+            </div>
+        </section>
+
+        <!-- Professional Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Prototype AI</h4>
+                    <p>Built for the future of human-computer interaction.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://github.com/Duong-John/Prototype_AI_Assitant" target="_blank">GitHub Repository</a></li>
+                        <li><a href="#">LinkedIn Profile</a></li>
+                        <li><a href="#">System Architecture</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p>Dev: Duong Nguyen</p>
+                    <p>Email: duong.nguyen14112005@hcmut.edu.vnr@hcmut.edu.vn</p>
+                    <p>Location: Ho Chi Minh City, Vietnam</p>
+                </div>
+            </div>
+            <!-- <div class="footer-bottom">
+                &copy; 2026 pdnguyen - HCMC University of Technology VNU-HCM. All rights reserved.
+            </div> -->
+        </footer>
+    </div>
+
+    <!-- Mouse Tracking Logic -->
+    <script src="landing_face.js"></script>
+</body>
+</html>
