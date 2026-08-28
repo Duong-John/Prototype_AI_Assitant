@@ -4,26 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prototype Web - AI Companion</title>
-    
-    <!-- Link to our minimalist stylesheet -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- Load TensorFlow.js (Required for YOLO/COCO-SSD) -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    
-    <!-- Load COCO-SSD Model (TensorFlow's Object Detection) -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
 </head>
 <body>
-    
-    <!-- Subtle instructional overlay -->
     <div id="ui-overlay">
         <p>Hold [SPACE] to speak</p>
         <p id="vision-status" class="hidden">Vision System: Booting...</p>
     </div>
 
-    <!-- Load custom logic scripts -->
-    <!-- Order matters: Load modules first, orchestrator last -->
+    <!-- Scripts (No need for TFJS here anymore) -->
     <script src="face.js"></script>
     <script src="yolo.js"></script>
     <script src="app.js"></script>
